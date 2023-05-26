@@ -9,13 +9,21 @@ var sub = document.getElementById("subbtn");
 var h2heading = document.getElementById("taskslistheading");
 var taskboxs = document.querySelectorAll(".task");
 var editbtn = document.querySelectorAll('.edit');
+var body = document.body;
+var bgcolor;
+var colorflag = "white";
+var edit_elements = [];
+var box_elements = [];
 
 function theme() {
-    var body = document.body;
+
     var bgcolor = window.getComputedStyle(body).getPropertyValue('background-color');
-    console.log(bgcolor);
+
     if (bgcolor == "rgb(255, 255, 255)") {
-        body.style.background = "#161722";
+
+        body.style.backgroundColor = "rgb(22, 23, 34)"
+        colorflag = "dark";
+        console.log("if " + colorflag);
         img.src = "/assets/icons/brightness.png";
         img.style.filter = "invert(100)";
         overlay.style.background = "linear-gradient(90deg, #1CB5E0 0%, #000851 100%)";
@@ -29,17 +37,20 @@ function theme() {
         h2heading.style.background = "linear-gradient(90deg, #1CB5E0 0%, #000851 100%)";
         h2heading.style.WebkitBackgroundClip = "text";
         h2heading.style.WebkitTextFillColor = "transparent";
-        for (let i = 0; i < taskboxs.length; i++) {
-            taskboxs[i].style.backgroundColor = "rgb(37,39,60)";
+        for (let i = 0; i < edit_elements.length; i++) {
+            var elements = edit_elements[i];
+            elements.classList.remove('pinkedit');
+            elements.classList.add('blackedit');
+            var box = box_elements[i];
+            box.style.backgroundColor = "rgb(37 39 60)";
         }
-        for (let i = 0; i < editbtn.length; i++) {
-            editbtn[i].style.background = "linear-gradient( 108deg,  rgba(2,93,145,1) 17.3%, rgba(0,156,222,1) 77.6% )";
-            editbtn[i].style.WebkitBackgroundClip = "text";
-            editbtn[i].style.WebkitTextFillColor = "transparent";
-        }
+
     }
     else {
+
         body.style.background = "white";
+        colorflag = "white";
+        console.log("else " + colorflag);
         img.src = "/assets/icons/moon.png";
         img.style.filter = "invert(0)";
         overlay.style.background = "linear-gradient(90deg, rgba(193, 46, 127, 1) 0%, rgba(224, 29, 253, 1) 47%, rgba(136, 69, 252, 1) 100%)";
@@ -56,10 +67,12 @@ function theme() {
         for (let i = 0; i < taskboxs.length; i++) {
             taskboxs[i].style.backgroundColor = "rgb(77, 77, 77)";
         }
-        for (let i = 0; i < editbtn.length; i++) {
-            editbtn[i].style.background = "linear-gradient(90deg, rgba(193, 46, 127, 1) 0%, rgba(224, 29, 253, 1) 47%, rgba(136, 69, 252, 1) 100%)";
-            editbtn[i].style.WebkitBackgroundClip = "text";
-            editbtn[i].style.WebkitTextFillColor = "transparent";
+        for (let i = 0; i < edit_elements.length; i++) {
+            var elements = edit_elements[i];
+            elements.classList.remove('blackedit');
+            elements.classList.add('pinkedit');
+            var box = box_elements[i];
+            box.style.backgroundColor = "rgb(77, 77, 77)";
         }
     }
 }
@@ -83,39 +96,51 @@ window.addEventListener('load', () => {
 
         const task_element = document.createElement("div");
         task_element.classList.add("task");
-
+        box_elements.push(task_element);
         const task_content = document.createElement("div");
+
         task_content.classList.add("content");
 
         task_element.appendChild(task_content);
 
-        const input_element=document.createElement("input");
+        const input_element = document.createElement("input");
         input_element.classList.add("text");
-        input_element.type="text";
-        input_element.value=task;
-        input_element.setAttribute("readonly","asd");
+        input_element.type = "text";
+        input_element.value = task;
+        input_element.setAttribute("readonly", "asd");
 
         task_content.appendChild(input_element);
 
-        const actions=document.createElement("div");
+        const actions = document.createElement("div");
         actions.classList.add("actions");
 
-        const edit=document.createElement("button");
-        edit.classList.add("edit");
-        edit.innerHTML="Edit";
+        edit = document.createElement("button");
+        edit_elements.push(edit);
 
-        const deleter=document.createElement("button");
+        if (colorflag == "white") {
+            edit.classList.add('pinkedit');
+            task_element.style.backgroundColor = "rgb(77, 77, 77)";
+        } else {
+            edit.classList.add('blackedit');
+            task_element.style.backgroundColor = "rgb(37 39 60)";
+        }
+
+        edit.classList.add("edit");
+
+        edit.innerHTML = "Edit";
+
+        const deleter = document.createElement("button");
         deleter.classList.add("delete");
-        deleter.innerHTML="Delete";
+        deleter.innerHTML = "Delete";
 
         actions.appendChild(edit);
         actions.appendChild(deleter);
-        
+
         task_element.appendChild(actions);
 
         list.appendChild(task_element);
 
-        input.value="";
+        input.value = "";
 
     })
 })
