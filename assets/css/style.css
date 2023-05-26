@@ -18,9 +18,10 @@
     src: url(/assets/fonts/nexa/Nexa-Heavy.ttf);
 }
 
-body{
+body {
     background-color: white;
     transition: all 1.5s;
+    height: 1500px;
 }
 
 .container-fluid {
@@ -29,7 +30,7 @@ body{
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    
+
 
 }
 
@@ -41,7 +42,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    
+
 
 }
 
@@ -53,7 +54,7 @@ body{
     background: linear-gradient(90deg, rgba(193, 46, 127, 1) 0%, rgba(224, 29, 253, 1) 47%, rgba(136, 69, 252, 1) 100%);
     z-index: 2;
     opacity: 0.5;
-    transition: all 1.5s ;
+    transition: all 1.5s;
 }
 
 
@@ -65,7 +66,7 @@ body{
     align-items: center;
     height: 100%;
     width: 100%;
-    
+
 }
 
 #opener {
@@ -97,7 +98,6 @@ body{
     left: 2vw;
     height: 30px;
     width: 75px;
-    filter: invert(1);
     z-index: 4;
     transition: all 1.5s;
 }
@@ -106,7 +106,8 @@ body{
     position: absolute;
     bottom: -18px;
     z-index: 4;
-   
+    filter: drop-shadow(0px 2px 15px rgba(0, 0, 0, 0.479));
+
 }
 
 #task {
@@ -114,33 +115,103 @@ body{
     border: none;
     width: 60vw;
     height: 35px;
-    filter: drop-shadow(0px 2px 15px black);
     outline: none;
-    font-family:nexa;
-    text-indent:10px;
-    letter-spacing:1.25px;
-    color:rgb(70, 70, 70);
+    font-family: nexa;
+    text-indent: 10px;
+    letter-spacing: 1.25px;
+    color: rgb(70, 70, 70);
     background-color: white;
     transition: all 1.5s;
 }
 
-.input{
-    border-radius:9px;
+#subbtn {
     border: none;
-    width: 60vw;
     height: 35px;
-    filter: drop-shadow(0px 2px 15px black);
+    background: linear-gradient(43deg, #002aff 0%, #C850C0 46%, #FFCC70 100%);
+    color: white;
+    font-size: 15px;
+    font-family: nexa;
     outline: none;
-    font-family:nexa;
-    text-indent:10px;
-    letter-spacing:1.25px;
-    color:rgb(70, 70, 70);
-    background-color: white;
+    border-radius: 10px;
+    transition: all .5s;
 }
 
+#subbtn:hover {
+    transform: translateY(-5px);
+}
+
+
+
 input::placeholder {
-    text-align:center;
+    text-align: center;
     font-family: nexa;
+}
+
+
+#tasks {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#taskslistheading {
+    background: linear-gradient(90deg, rgba(193, 46, 127, 1) 0%, rgba(224, 29, 253, 1) 47%, rgba(136, 69, 252, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 2px 1px black);
+    font-family: strokef;
+    text-align: center;
+    font-size: 5vw;
+    padding-top: 25px;
+}
+
+#tasks .task {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(77, 77, 77);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 1rem;
+}
+
+.task .content .text {
+    color: rgb(255, 255, 255);
+    font-size: 4vw;
+    font-family: nexa;
+    width: 100%;
+    display: block;
+    transition: .5s;
+}
+
+#tasks .task .content .text:not(:read-only) {
+    color: #e01bd3;
+}
+
+.task .actions button {
+    font-size: 4vw;
+    font-family: nexa;
+    transition: .5s;
+}
+
+.task .actions button:hover {
+    opacity: 0.7;
+}
+
+input,
+button {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.edit {
+    background: linear-gradient(90deg, rgba(193, 46, 127, 1) 0%, rgba(224, 29, 253, 1) 47%, rgba(136, 69, 252, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.actions .delete {
+    color: crimson;
 }
 
 
@@ -162,6 +233,34 @@ input::placeholder {
         line-height: 7vh;
         margin-top: 165px;
     }
+    #task {
+        font-size:15px;
+    }
+
+    #taskslistheading {
+        font-size:3vw;
+    }
+    #subbtn {
+        font-size:15px;
+    }
+    #tasks {
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+
+    .task .content .text {
+        color: rgb(255, 255, 255);
+        font-size:1.5vw;
+        font-family: nexa;
+        width: 100%;
+        display: block;
+        transition: .5s;
+    }
+
+    .task .actions button {
+        font-size:1.5vw;
+        font-family: nexa;
+}
 
 }
 
@@ -176,10 +275,37 @@ input::placeholder {
 
     #opener2 {
         font-size: 4vw;
-        line-height: 4vh;
+        line-height:6vh;
         margin-top: 95px;
     }
+    #task {
+        font-size:20px;
+    }
 
+    #taskslistheading {
+        font-size:4vw;
+    }
+    #subbtn {
+        font-size: 20px;
+    }
+    #tasks {
+        padding-left: 90px;
+        padding-right: 90px;
+    }
+
+    .task .content .text {
+        color: rgb(255, 255, 255);
+        font-size:2vw;
+        font-family: nexa;
+        width: 100%;
+        display: block;
+        transition: .5s;
+    }
+
+    .task .actions button {
+        font-size:2vw;
+        font-family: nexa;
+}
 }
 
 
@@ -194,9 +320,44 @@ input::placeholder {
 
     #opener2 {
         font-size: 6vw;
-        line-height: 4vh;
+        line-height: 6.5vh;
         margin-top: 95px;
     }
+
+    #task {
+        font-size: 25px;
+    }
+
+    #taskslistheading {
+        font-size: 6vw;
+    }
+
+    #subbtn {
+        font-size: 20px;
+    }
+
+    #tasks {
+        padding-left: 90px;
+        padding-right: 90px;
+    }
+
+    .task .content .text {
+        color: rgb(255, 255, 255);
+        font-size: 3vw;
+        font-family: nexa;
+        width: 100%;
+        display: block;
+        transition: .5s;
+    }
+
+    .task .actions button {
+        font-size: 3vw;
+        font-family: nexa;
+        transition: .5s;
+    }
+
+
+
 
 }
 
@@ -211,7 +372,35 @@ input::placeholder {
 
     #opener2 {
         font-size: 10vw;
-        line-height: 3.5vh;
+        line-height: 5.5vh;
     }
+
+    #task {
+        font-size: 15px;
+    }
+
+    #taskslistheading {
+        font-size: 7vw;
+    }
+
+    #subbtn {
+        font-size: 12px;
+    }
+
+    #tasks {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .task .content .text {
+        font-size: 4vw;
+    }
+
+    .task .actions button {
+        font-size: 4vw;
+
+    }
+
+
 
 }
