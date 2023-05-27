@@ -12,6 +12,7 @@ var editbtn = document.querySelectorAll('.edit');
 var body = document.body;
 var bgcolor;
 var colorflag = "white";
+var input_elements = []
 var edit_elements = [];
 var box_elements = [];
 
@@ -43,6 +44,11 @@ function theme() {
             elements.classList.add('blackedit');
             var box = box_elements[i];
             box.style.backgroundColor = "rgb(37 39 60)";
+            if (elements.innerText.toLowerCase() == "save") {
+                var inp = input_elements[i];
+                inp.style.color = "#00d9ff";
+            }
+
         }
 
     }
@@ -73,7 +79,12 @@ function theme() {
             elements.classList.add('pinkedit');
             var box = box_elements[i];
             box.style.backgroundColor = "rgb(77, 77, 77)";
+            if (elements.innerText.toLowerCase() == "save") {
+                var inp = input_elements[i];
+                inp.style.color = "#e01bd3";
+            }
         }
+
     }
 }
 
@@ -88,59 +99,124 @@ window.addEventListener('load', () => {
         e.preventDefault();
 
         const task = input.value;
-        if (!task) {
-            alert("Add Something To The List ");
-            return;
+        if (task.trim()!=0){
+            
+            //creating the parent element div task_element 
+            const task_element = document.createElement("div");
+            task_element.classList.add("task");
+            box_elements.push(task_element);
+
+            //creating the first child element div task_content  
+            const task_content = document.createElement("div");
+            task_content.classList.add("content");
+            task_element.appendChild(task_content);
+
+            //creating the child element input of the task_content
+            const input_element = document.createElement("input");
+            input_element.classList.add("text");
+            input_element.type = "text";
+            input_element.value = task;
+            input_element.setAttribute("readonly", "asd");
+            input_elements.push(input_element);
+            task_content.appendChild(input_element);
+
+            //creating the second child element div of the task_element
+            const actions = document.createElement("div");
+            actions.classList.add("actions");
+
+            var edit = document.createElement("button");
+            edit.classList.add("edit");
+            edit.innerHTML = "Edit";
+            edit_elements.push(edit);
+
+            if (colorflag == "white") {
+                edit.classList.add('pinkedit');
+                task_element.style.backgroundColor = "rgb(77, 77, 77)";
+            } else {
+                edit.classList.add('blackedit');
+                task_element.style.backgroundColor = "rgb(37 39 60)";
+            }
+
+
+            const deleter = document.createElement("button");
+            deleter.classList.add("delete");
+            deleter.innerHTML = "Delete";
+
+            actions.appendChild(edit);
+            actions.appendChild(deleter);
+
+            task_element.appendChild(actions);
+            list.appendChild(task_element);
+            input.value = "";
+
+
+            edit.addEventListener("click", () => {
+                if (edit.innerText.toLowerCase() == "edit") {
+                    if (colorflag == "white") {
+                        input_element.style.color = " #e01bd3";
+                    } else {
+                        input_element.style.color = "#00d9ff";
+                    }
+                    input_element.removeAttribute("readonly");
+                    input_element.focus();
+                    edit.innerText = "Save";
+                }
+                else {
+                    input_element.setAttribute("readonly", "readonly");
+                    input_element.style.color = "white";
+                    edit.innerText = "Edit";
+                }
+
+            })
+
+            // Get the modal element
+            var modal = document.getElementById("modal");
+
+            // Get the <span> element that closes the modal
+            var closeBtn = document.getElementsByClassName("close")[0];
+
+            // Get the modal message element
+            var modalMessage = document.getElementById("modalMessage");
+
+            // Function to display the modal
+            function showModal(message) {
+                modalMessage.textContent = message;
+                modal.style.display = "block";
+            }
+
+            // Function to close the modal with fade-out animation
+            function closeModal() {
+                modal.classList.add("fade-out");
+                setTimeout(function () {
+                    modal.style.display = "none";
+                    modal.classList.remove("fade-out");
+                }, 300); // Wait for the fade-out animation to complete before hiding the modal
+            }
+
+            // Add event listener to the delete button
+            deleter.addEventListener("click", function () {
+                var confirmation = confirm("Are you sure you want to delete?");
+
+                if (confirmation) {
+                    showModal("Item deleted successfully.");
+                    list.removeChild(task_element);
+                    // Code to delete the item
+                    // list.removeChild(task_element);
+                } else {
+                    showModal("Deletion cancelled.");
+                }
+            });
+
+            // Add event listener to the close button
+            closeBtn.addEventListener("click", closeModal);
+
+        }
+        else{
+            alert("Please Enter A Task To Add Into List ");
         }
 
 
-        const task_element = document.createElement("div");
-        task_element.classList.add("task");
-        box_elements.push(task_element);
-        const task_content = document.createElement("div");
+    });
 
-        task_content.classList.add("content");
 
-        task_element.appendChild(task_content);
-
-        const input_element = document.createElement("input");
-        input_element.classList.add("text");
-        input_element.type = "text";
-        input_element.value = task;
-        input_element.setAttribute("readonly", "asd");
-
-        task_content.appendChild(input_element);
-
-        const actions = document.createElement("div");
-        actions.classList.add("actions");
-
-        edit = document.createElement("button");
-        edit_elements.push(edit);
-
-        if (colorflag == "white") {
-            edit.classList.add('pinkedit');
-            task_element.style.backgroundColor = "rgb(77, 77, 77)";
-        } else {
-            edit.classList.add('blackedit');
-            task_element.style.backgroundColor = "rgb(37 39 60)";
-        }
-
-        edit.classList.add("edit");
-
-        edit.innerHTML = "Edit";
-
-        const deleter = document.createElement("button");
-        deleter.classList.add("delete");
-        deleter.innerHTML = "Delete";
-
-        actions.appendChild(edit);
-        actions.appendChild(deleter);
-
-        task_element.appendChild(actions);
-
-        list.appendChild(task_element);
-
-        input.value = "";
-
-    })
-})
+});

@@ -175,6 +175,10 @@ input::placeholder {
     transition: .5s;
 }
 
+#tasks .task .content{
+    flex: 1  1 0%;
+}
+
 .task .content .text {
     color: rgb(255, 255, 255);
     font-size: 4vw;
@@ -221,6 +225,67 @@ button {
 .actions .delete {
     color: crimson;
 }
+
+/* Styling for the modal */
+.modal {
+    opacity: 0;
+    display: none;
+    position: fixed;
+    z-index: 6;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    animation: fade-in 0.3s ease forwards;
+  }
+  
+  .modal.fade-out {
+    animation: fade-out 0.3s ease forwards;
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  
 
 
 
