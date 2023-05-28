@@ -19,7 +19,7 @@
 }
 
 body {
-    
+
     transition: all 1.5s;
     height: 1500px;
 }
@@ -164,7 +164,7 @@ input::placeholder {
     padding-top: 25px;
 }
 
-
+/* lightmode css */
 #tasks .task {
     display: flex;
     justify-content: space-between;
@@ -175,8 +175,8 @@ input::placeholder {
     transition: .5s;
 }
 
-#tasks .task .content{
-    flex: 1  1 0%;
+#tasks .task .content {
+    flex: 1 1 0%;
 }
 
 .task .content .text {
@@ -202,6 +202,50 @@ input::placeholder {
     opacity: 0.7;
 }
 
+/* Dark mode css */
+
+#tasks .taskdark {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(37 39 60);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 1rem;
+    transition: .5s;
+}
+
+#tasks .taskdark .content {
+    flex: 1 1 0%;
+}
+
+.taskdark .content .text {
+    color: rgb(255, 255, 255);
+    font-size: 4vw;
+    font-family: nexa;
+    width: 100%;
+    display: block;
+    transition: .5s;
+}
+
+#tasks .task .content .text:not(:read-only) {
+    color: #e01bd3;
+}
+
+#tasks .taskdark .content .text:not(:read-only) {
+    color: #00f2ff;
+}
+
+.taskdark .actions button {
+    font-size: 4vw;
+    font-family: nexa;
+    transition: .5s;
+}
+
+.taskdark .actions button:hover {
+    opacity: 0.7;
+}
+
+
 input,
 button {
     appearance: none;
@@ -210,21 +254,24 @@ button {
     background: none;
 }
 
-.pinkedit{
+.pinkedit {
     background: linear-gradient(90deg, rgba(193, 46, 127, 1) 0%, rgba(224, 29, 253, 1) 47%, rgba(136, 69, 252, 1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.blackedit{
-    background: linear-gradient( 108deg,  rgba(2,93,145,1) 17.3%, rgba(0,156,222,1) 77.6% );
+.blackedit {
+    background: linear-gradient(108deg, rgba(2, 93, 145, 1) 17.3%, rgba(0, 156, 222, 1) 77.6%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+
+
 .actions .delete {
     color: crimson;
 }
+
 
 /* Styling for the modal */
 .modal {
@@ -252,6 +299,10 @@ button {
     border: 1px solid #888;
     width: 300px;
   }
+
+  .close{
+   cursor:pointer;
+  }
   
   @keyframes fade-in {
     from {
@@ -270,28 +321,74 @@ button {
       opacity: 0;
     }
   }
-
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
   
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  
-
-
-
 
 /* Media Query Section */
 
+
+@media (max-width:2560px){
+    .welcome {
+        height: 25rem;
+    }
+
+    #opener {
+        font-size: 10vw;
+    }
+
+    #opener2 {
+        font-size: 4vw;
+        line-height: 7vh;
+        margin-top: 165px;
+    }
+
+    #task {
+        font-size: 15px;
+    }
+
+    #taskslistheading {
+        font-size: 3vw;
+    }
+
+    #subbtn {
+        font-size: 15px;
+    }
+
+    #tasks {
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+
+    /* lightmode css */
+    .task .content .text {
+        color: rgb(255, 255, 255);
+        font-size: 1.5vw;
+        font-family: nexa;
+        width: 100%;
+        display: block;
+        transition: .5s;
+    }
+
+    .task .actions button {
+        font-size: 1.5vw;
+        font-family: nexa;
+    }
+
+    /* dark mode css */
+    .taskdark .content .text {
+        color: rgb(255, 255, 255);
+        font-size: 1.5vw;
+        font-family: nexa;
+        width: 100%;
+        display: block;
+        transition: .5s;
+    }
+
+    .taskdark .actions button {
+        font-size: 1.5vw;
+        font-family: nexa;
+    }
+
+}
 @media (max-width:1440px) {
     .welcome {
         height: 25rem;
@@ -306,24 +403,28 @@ button {
         line-height: 7vh;
         margin-top: 165px;
     }
+
     #task {
-        font-size:15px;
+        font-size: 15px;
     }
 
     #taskslistheading {
-        font-size:3vw;
+        font-size: 3vw;
     }
+
     #subbtn {
-        font-size:15px;
+        font-size: 15px;
     }
+
     #tasks {
         padding-left: 150px;
         padding-right: 150px;
     }
 
+    /* lightmode css */
     .task .content .text {
         color: rgb(255, 255, 255);
-        font-size:1.5vw;
+        font-size: 1.5vw;
         font-family: nexa;
         width: 100%;
         display: block;
@@ -331,10 +432,24 @@ button {
     }
 
     .task .actions button {
-        font-size:1.5vw;
+        font-size: 1.5vw;
         font-family: nexa;
-}
+    }
 
+    /* dark mode css */
+    .taskdark .content .text {
+        color: rgb(255, 255, 255);
+        font-size: 1.5vw;
+        font-family: nexa;
+        width: 100%;
+        display: block;
+        transition: .5s;
+    }
+
+    .taskdark .actions button {
+        font-size: 1.5vw;
+        font-family: nexa;
+    }
 }
 
 @media (max-width:1024px) {
@@ -348,27 +463,31 @@ button {
 
     #opener2 {
         font-size: 4vw;
-        line-height:6vh;
+        line-height: 6vh;
         margin-top: 95px;
     }
+
     #task {
-        font-size:20px;
+        font-size: 20px;
     }
 
     #taskslistheading {
-        font-size:4vw;
+        font-size: 4vw;
     }
+
     #subbtn {
         font-size: 20px;
     }
+
     #tasks {
         padding-left: 90px;
         padding-right: 90px;
     }
 
+    /* lightmode css */
     .task .content .text {
         color: rgb(255, 255, 255);
-        font-size:2vw;
+        font-size: 2vw;
         font-family: nexa;
         width: 100%;
         display: block;
@@ -376,9 +495,26 @@ button {
     }
 
     .task .actions button {
-        font-size:2vw;
+        font-size: 2vw;
         font-family: nexa;
-}
+    }
+
+
+    /* dark mode css */
+
+    .taskdark .content .text {
+        color: rgb(255, 255, 255);
+        font-size: 2vw;
+        font-family: nexa;
+        width: 100%;
+        display: block;
+        transition: .5s;
+    }
+
+    .taskdark .actions button {
+        font-size: 2vw;
+        font-family: nexa;
+    }
 }
 
 
@@ -414,6 +550,7 @@ button {
         padding-right: 90px;
     }
 
+    /* lightmode css */
     .task .content .text {
         color: rgb(255, 255, 255);
         font-size: 3vw;
@@ -424,6 +561,24 @@ button {
     }
 
     .task .actions button {
+        font-size: 3vw;
+        font-family: nexa;
+        transition: .5s;
+    }
+
+
+    /* dark mode css */
+
+    .taskdark .content .text {
+        color: rgb(255, 255, 255);
+        font-size: 3vw;
+        font-family: nexa;
+        width: 100%;
+        display: block;
+        transition: .5s;
+    }
+
+    .taskdark .actions button {
         font-size: 3vw;
         font-family: nexa;
         transition: .5s;
@@ -465,6 +620,8 @@ button {
         padding-right: 20px;
     }
 
+    /* lightmode css */
+
     .task .content .text {
         font-size: 4vw;
     }
@@ -473,6 +630,18 @@ button {
         font-size: 4vw;
 
     }
+
+
+    /* dark mode css */
+    .taskdark .content .text {
+        font-size: 4vw;
+    }
+
+    .taskdark .actions button {
+        font-size: 4vw;
+
+    }
+
 
 
 
