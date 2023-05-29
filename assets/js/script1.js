@@ -1,5 +1,3 @@
-//getting the elements which are manipulated based on th theme 
-
 var moder = document.getElementById('mdbtn');
 moder.addEventListener('click', theme);
 var img = document.getElementById("mdimg");
@@ -134,7 +132,6 @@ function showtasks() {
         <div class="actions">
             <button class="${btnclass}" onclick="editfunc(${index})" id="editbtn"> Edit </button>
             <button class="delete" onclick="deletefunc(${index})">Delete</button>
-
         </div>
         </div>`
     });
@@ -204,7 +201,7 @@ function deletefunc(index) {
       timerProgressBar: true,
     });
   }
-  
+
   
 
 

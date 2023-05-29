@@ -21,8 +21,8 @@
 body {
 
     transition: all 1.5s;
-    height: 1500px;
-    overflow: hidden;
+    height: 5000px;
+   
 }
 
 .container-fluid {
@@ -304,7 +304,7 @@ button {
   .close{
    cursor:pointer;
   }
-  
+
 
   
   
@@ -645,8 +645,5 @@ button {
         font-size: 4vw;
 
     }
-
-
-
 
 }
