@@ -1,3 +1,5 @@
+//getting the elements which are manipulated based on th theme 
+
 var moder = document.getElementById('mdbtn');
 moder.addEventListener('click', theme);
 var img = document.getElementById("mdimg");
@@ -67,11 +69,11 @@ function theme() {
 
 
 
-window.addEventListener('load', () => {
+window.addEventListener('load', () => { 
 
     const forms = document.querySelector('#form');
     const input = document.querySelector("#task");
-    const list = document.querySelector("#tasks");
+
 
     showtasks();
     forms.addEventListener('submit', (e) => {
@@ -165,52 +167,44 @@ function editfunc(index) {
 }
 
 function deletefunc(index) {
-
-    var confirmation = confirm("Are you sure you want to delete?");
-
-  if (confirmation) {
-    showModal("Item deleted successfully.");
-    let webstorage = localStorage.getItem("storedtasks");
-    let taskobject = JSON.parse(webstorage);
-    taskobject.splice(index, 1);
-    localStorage.setItem("storedtasks", JSON.stringify(taskobject));
-    showtasks();
-  } else {
-    showModal("Deletion cancelled.");
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this item!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'Your item has been deleted.',
+          icon: 'success',
+          timer: 2000,
+          timerProgressBar: true
+        }).then(() => {
+          let webstorage = localStorage.getItem("storedtasks");
+          let taskobject = JSON.parse(webstorage);
+          taskobject.splice(index, 1);
+          localStorage.setItem("storedtasks", JSON.stringify(taskobject));
+          showtasks();
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelled', 'Your deletion has been cancelled.', 'error');
+      }
+    });
   }
-    
-
-}
-
-
-// Get the modal element
-var modal = document.getElementById("modal");
-
-// Get the <span> element that closes the modal
-var closeBtn = document.getElementsByClassName("close")[0];
-
-// Get the modal message element
-var modalMessage = document.getElementById("modalMessage");
-
-// Function to display the modal
-function showModal(message) {
-  modalMessage.textContent = message;
-  modal.style.display = "block";
-}
-
-// Function to close the modal with fade-out animation
-function closeModal() {
-  modal.classList.add("fade-out");
-  setTimeout(function() {
-    modal.style.display = "none";
-    modal.classList.remove("fade-out");
-  }, 300); // Wait for the fade-out animation to complete before hiding the modal
-}
-
-// Add event listener to the delete button
-
-
-// Add event listener to the close button
-closeBtn.addEventListener("click", closeModal);
+  
+  // Function to display the modal
+  function showModal(message) {
+    Swal.fire({
+      text: message,
+      timer: 2000,
+      timerProgressBar: true,
+    });
+  }
+  
+  
 
 

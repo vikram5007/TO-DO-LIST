@@ -22,6 +22,7 @@ body {
 
     transition: all 1.5s;
     height: 1500px;
+    overflow: hidden;
 }
 
 .container-fluid {
@@ -303,6 +304,9 @@ button {
   .close{
    cursor:pointer;
   }
+  
+
+  
   
   @keyframes fade-in {
     from {
